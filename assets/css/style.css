@@ -1,0 +1,133 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+}
+
+* {
+    box-sizing: border-box;
+}
+h1 {
+    font-size: 34px;
+    font-weight: bold;
+    text-align: center;
+}
+img {
+    vertical-align: middle;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+input, select {
+    border: none;
+    outline: none;
+}
+.btn {
+    cursor: pointer;
+    transition: .3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+.btn:hover {
+    filter: brightness(1.15);
+}
+
+.single-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+._sp {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    ._sp {
+        display: block;
+    }
+
+    ._pc {
+        display: none;
+    }
+}
+
+/* index page  */
+.wrapper {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    padding: 40px;
+    background-color: gray;
+}
+.wrapper > .result-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    padding: 40px;
+}
+.joint-result img {
+    width: 100%;
+}
+
+.wrapper > .joint-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px 40px;
+    width: 50%;
+}
+.joint-card {
+    width: 180px;
+    color: white;
+}
+.joint-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.joint-input {
+    height: auto;
+    position: relative;
+    display: flex;
+    margin-bottom: 15px;
+    color: white;
+}
+.joint-input p {
+    font-size: 16px;
+    font-weight: normal;
+}
+.joint-input input {
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+    background-color: darkgray;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 20px;
+    padding: 4px 10px;
+}
+.joint-input .label {
+    font-size: 24px;
+    margin-right: 20px;
+}
+
+@media (max-width: 1320px) {
+    .wrapper {
+        flex-direction: column;
+    }
+    .wrapper > .result-container {
+        width: 100%;
+    }
+    .wrapper > .joint-container {
+        width: 100%;
+    }
+}
