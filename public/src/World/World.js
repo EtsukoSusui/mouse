@@ -25,9 +25,9 @@ class World {
     container.append(renderer.domElement);
     clock = new Clock();
     controls = createControls(camera, renderer.domElement);
-    const { ambientLight, mainLight } = createLights();
+    const { ambientLight, mainLight1, mainLight2, mainLight3, mainLight4, mainLight5, mainLight6 } = createLights();
     loop.updatables.push(controls);
-    scene.add(ambientLight, mainLight);
+    scene.add(ambientLight, mainLight1, mainLight2, mainLight3, mainLight4, mainLight5, mainLight6);
     const resizer = new Resizer(container, camera, renderer);  
   }
 
@@ -38,6 +38,9 @@ class World {
     controls.target.copy(model.position);
     model.scale.set( 0.1, 0.1, 0.1 );
     scene.add(model);
+    console.log(model)
+    let MouseGland2 = scene.getObjectByName("MouseGland2");
+    let Mouse_body_shorttail = scene.getObjectByName("Mouse_body_shorttail");
     let rootbone = scene.getObjectByProperty('type', "Bone");
     let bones = []
     rootbone.traverse((child) =>{
