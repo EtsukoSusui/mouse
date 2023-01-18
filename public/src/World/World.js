@@ -6,7 +6,8 @@ import { createControls } from './systems/controls.js';
 import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/Resizer.js';
 import { Loop } from './systems/Loop.js';
-import { AnimationMixer, Clock } from 'https://cdn.skypack.dev/three@v0.132.2';
+import { Clock } from 'https://cdn.skypack.dev/three@v0.132.2';
+import { STLExporter } from 'https://cdn.skypack.dev/three@v0.132.2/examples/jsm/exporters/STLExporter.js';
 
 let camera;
 let controls;
@@ -44,7 +45,8 @@ class World {
     let rootbone = scene.getObjectByProperty('type', "Bone");
     let bones = []
     rootbone.traverse((child) =>{
-      if(child.position.x!==0 || child.position.y!==0 || child.position.z!==0)
+      //if(child.position.x!==0 || child.position.y!==0 || child.position.z!==0)
+      
       bones.push(child)
     });
     
@@ -80,6 +82,22 @@ class World {
         bones[i].position.z = this.value
       })
     }
+
+
+    document.getElementById("export-btn").addEventListener("click", function(){
+     
+      var exporter = new STLExporter();
+     // exporter.parse( scene );
+      function saveString( text, filename ) {
+        const blob = new Blob([text], { type: 'text/plain' });
+        var stlURL = window.URL.createObjectURL(blob);
+        let tempLink = document.createElement('a');
+        tempLink.href = stlURL;
+        tempLink.setAttribute('download', filename);
+        tempLink.click();
+      }
+      saveString( exporter.parse( scene ), 'model.stl' );
+    })
   }
 
   render() {

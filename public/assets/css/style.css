@@ -142,3 +142,14 @@ input, select {
         width: 100%;
     }
 }
+
+.btn-export{
+    position:absolute;
+    top:25px;
+    left:25px;
+    padding:10px 20px;
+    color:black;
+    font-weight:800;
+    font-size:18px;
+    border-radius:10px
+}
