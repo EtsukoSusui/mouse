@@ -7,7 +7,7 @@ import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/Resizer.js';
 import { Loop } from './systems/Loop.js';
 import { Clock } from 'https://cdn.skypack.dev/three@v0.132.2';
-import { STLExporter } from 'https://cdn.skypack.dev/three@v0.132.2/examples/jsm/exporters/STLExporter.js';
+import { GLTFExporter } from 'https://cdn.skypack.dev/three@v0.132.2/examples/jsm/exporters/GLTFExporter.js';
 
 let camera;
 let controls;
@@ -20,7 +20,7 @@ let i = 0;
 class World {
   constructor(container) {
     camera = createCamera();
-    renderer = createRenderer();
+    renderer = createRenderer(); 
     scene = createScene();
     loop = new Loop(camera, scene, renderer);
     container.append(renderer.domElement);
@@ -33,7 +33,7 @@ class World {
   }
 
   async init() {
-    const {modelData} = await loadModel('/assets/models/MousePose.fbx');
+    const {modelData} = await loadModel('/assets/models/MousePoses.0001.fbx');
     let model = modelData;
     model.position.set(0, 0, 0);
     controls.target.copy(model.position);
@@ -86,7 +86,7 @@ class World {
 
     document.getElementById("export-btn").addEventListener("click", function(){
      
-      var exporter = new STLExporter();
+      var exporter = new GLTFExporter();
      // exporter.parse( scene );
       function saveString( text, filename ) {
         const blob = new Blob([text], { type: 'text/plain' });
@@ -96,8 +96,43 @@ class World {
         tempLink.setAttribute('download', filename);
         tempLink.click();
       }
-      saveString( exporter.parse( scene ), 'model.stl' );
+     
+      const link = document.createElement( 'a' );
+			link.style.display = 'none';
+			document.body.appendChild( link ); 
+      function save( blob, filename ) {
+
+				link.href = URL.createObjectURL( blob );
+				link.download = filename;
+				link.click();
+			}
+      function saveString( text, filename ) {
+				save( new Blob( [ text ], { type: 'text/plain' } ), filename );
+
+			}
+       exporter.parse(
+        scene,
+        function ( result ) {
+
+          if ( result instanceof ArrayBuffer ) {
+
+            saveArrayBuffer( result, 'scene.glb' );
+
+          } else {
+
+            const output = JSON.stringify( result, null, 2 );
+            console.log( output );
+            saveString( output, 'scene.gltf' );
+          }
+
+        },
+        function ( error ) {
+          console.log( 'An error happened during parsing', error );
+        }
+      );
     })
+
+
   }
 
   render() {
