@@ -3,12 +3,12 @@ import { DirectionalLight, HemisphereLight, AmbientLight } from 'https://cdn.sky
 function createLights() {
   const ambientLight = new AmbientLight(0x404040);
 
-  const mainLight1 = new DirectionalLight('white', 1.8);
-  const mainLight2 = new DirectionalLight('white', 1.8);
-  const mainLight3 = new DirectionalLight('white', 1.8);
-  const mainLight4 = new DirectionalLight('white', 1.8);
-  const mainLight5 = new DirectionalLight('white', 1.8);
-  const mainLight6 = new DirectionalLight('white', 1.8);
+  const mainLight1 = new DirectionalLight('white', 2.8);
+  const mainLight2 = new DirectionalLight('white', 2.8);
+  const mainLight3 = new DirectionalLight('white', 2.8);
+  const mainLight4 = new DirectionalLight('white', 2.8);
+  const mainLight5 = new DirectionalLight('white', 2.8);
+  const mainLight6 = new DirectionalLight('white', 2.8);
   mainLight1.position.set(0, 0, 10);
   mainLight2.position.set(0, 0, -10);
   mainLight3.position.set(10, 0, 0);
